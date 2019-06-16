@@ -12,5 +12,5 @@
 
     4. Replace the "google_map_api_key_sample" into "google_map_api_key".
     -->
-    <string name="google_maps_api_key">AIzaSyC0JHZrlUmc-QJbN4K0uRKlvwp6M2m7S-Y</string>
+    <string name="google_maps_api_key"></string>
 </resources>
