@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">DowseGoal</string>
-
     <string name="toast_requires_permission_format">Requires permission %s</string>
     <string name="info_view_default">DowseGoal</string>
+    <string name="info_format">Latitude: %1$f\nLongitude: %2$f</string>
+    <string name="title_default">Dowse\nGoal</string>
+    <string name="discription">This game is to find goal which is placed in a range you decided\nThis is start Location↓</string>
     <string name="latlng_format">latitude = %f, longitude = %f</string>
+    <string name="toast_requires_permission">This application requires permission %s</string>
+    <string name="toast_no_sensor_manager">No sensor manager available</string>
+    <string name="toast_no_gyroscope">No gyroscope available</string>
 </resources>

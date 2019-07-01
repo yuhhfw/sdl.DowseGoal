@@ -30,7 +30,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback,
+public class Service1 extends AppCompatActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     private final static String TAG = MainActivity.class.getSimpleName();
 
@@ -47,10 +47,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private FusedLocationProviderClient locationClient;
     private LocationRequest request;
     private LocationCallback callback;
+    Button Finishbutton;
     Button Resetbutton;
-    Button buttonGo1;
-    public static LatLng START_LatLng;
-    int first = 0;
+
     private enum State {
         STOPPED,
         REQUESTING,
@@ -63,13 +62,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate");
-        setContentView(R.layout.activity_main);
-
-        TextView title = findViewById(R.id.title);
-        title.setText("Dowse\nGoal");
-
+        setContentView(R.layout.activity_service1);
+        Finishbutton = findViewById(R.id.Finishbutton);
         Resetbutton = findViewById(R.id.Resetbutton);
-        buttonGo1 = findViewById(R.id.button_go1);
+
         infoView = findViewById(R.id.info_view);
         SupportMapFragment fragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map_fragment);
         if (fragment != null) {
@@ -101,10 +97,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 Location location = locationResult.getLastLocation();
                 LatLng ll = new LatLng(location.getLatitude(), location.getLongitude());
                 infoView.setText(getString(R.string.latlng_format, ll.latitude, ll.longitude));
-                if(first == 0) {
-                    START_LatLng = new LatLng(ll.latitude, ll.longitude);
-                    first++;
-                }
                 if (map == null) {
                     Log.d(TAG, "onLocationResult: map == null");
                     return;
@@ -120,12 +112,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
 
-        buttonGo1.setOnClickListener(new View.OnClickListener() {
+        Finishbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick - Go 1");
-                Intent intent = new Intent(MainActivity.this, CheckIn.class);
-                startActivity(intent);
+                finish();
             }
         });
     }
@@ -219,7 +209,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private void stopLocationUpdate() {
         Log.d(TAG, "stopLocationUpdate");
         locationClient.removeLocationUpdates(callback);
-       // state = State.STOPPED;
+        state = State.STOPPED;
     }
 
 }

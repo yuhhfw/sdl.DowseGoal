@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/discription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:gravity="center_horizontal"
+        android:text="@string/discription"
+        android:textColor="#C7B58B"
+        android:textColorHighlight="#C179D1"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/distance"
+        android:layout_width="357dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:gravity="center"
+        android:text="Level of difficulty\nradius"
+        android:textColor="#BDBC83"
+        android:textColorHighlight="#C179D1"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.586"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/info" />
+
+    <TextView
+        android:id="@+id/info"
+        android:layout_width="230dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/info_format"
+        android:textSize="20dp"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/discription" />
+
+    <Button
+        android:id="@+id/input_easy1"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:layout_width="110dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:text="easy\n100m"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/input_normal1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/distance"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/input_easy2"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:layout_width="110dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="16dp"
+        android:text="easy\n500m"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/input_normal2"
+        app:layout_constraintEnd_toStartOf="@+id/input_easy3"
+        app:layout_constraintStart_toEndOf="@+id/input_easy1"
+        app:layout_constraintTop_toBottomOf="@+id/distance"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/input_easy3"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:layout_width="110dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="easy\n1000m"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/input_normal3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/distance"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/input_normal1"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:layout_width="110dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="normal\n100m"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/input_hard1"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/input_normal2"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:layout_width="110dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="16dp"
+        android:text="normal\n500m"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/input_hard2"
+        app:layout_constraintEnd_toStartOf="@+id/input_normal3"
+        app:layout_constraintStart_toEndOf="@+id/input_normal1" />
+
+    <Button
+        android:id="@+id/input_normal3"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:layout_width="110dp"
+        android:layout_height="70dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="normal\n1000m"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/input_hard3"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/input_hard1"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:layout_width="110dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="40dp"
+        android:text="hard\n100m"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/input_hard2"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:layout_width="110dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="40dp"
+        android:text="hard\n500m"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/input_hard3"
+        app:layout_constraintStart_toEndOf="@+id/input_hard1" />
+
+    <Button
+        android:id="@+id/input_hard3"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:layout_width="110dp"
+        android:layout_height="70dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="40dp"
+        android:text="hard\n1000m"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
