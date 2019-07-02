@@ -98,7 +98,7 @@ public class Easy extends AppCompatActivity implements
         info_comment.setText("Decided Goal!");
         TextView black = findViewById(R.id.black);
         black.setText("");
-        black.setVisibility(View.GONE);
+        //black.setVisibility(View.GONE);
 
         Button hint_button;
         hint_button = findViewById(R.id.hint_button);
@@ -119,10 +119,10 @@ public class Easy extends AppCompatActivity implements
                 hint_button = findViewById(R.id.hint_button);
                 hint_button.setVisibility(View.VISIBLE);
                 TextView black = findViewById(R.id.black);
-                black.setVisibility(View.VISIBLE);
+                black.setVisibility(View.GONE);
                 CheckIn.start = System.currentTimeMillis();
             }
-        }, 3000);
+        }, 6000);
 
         //hint button
         hint_button.setOnClickListener(new View.OnClickListener(){
@@ -133,7 +133,7 @@ public class Easy extends AppCompatActivity implements
                 hint_button.setVisibility(View.GONE);
                 CheckIn.count_click++;
                 TextView black = findViewById(R.id.black);
-                black.setVisibility(View.GONE);
+                black.setVisibility(View.VISIBLE);
                 mHandler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -141,9 +141,9 @@ public class Easy extends AppCompatActivity implements
                         hint_button = findViewById(R.id.hint_button);
                         hint_button.setVisibility(View.VISIBLE);
                         TextView black = findViewById(R.id.black);
-                        black.setVisibility(View.VISIBLE);
+                        black.setVisibility(View.GONE);
                     }
-                }, 3000);
+                }, 10000);
             }
         });
 
@@ -225,7 +225,7 @@ public class Easy extends AppCompatActivity implements
     @Override
     public void onMapReady(GoogleMap map) {
         Log.d(TAG, "onMapReady");
-        map.moveCamera(CameraUpdateFactory.zoomTo(15f));
+        map.moveCamera(CameraUpdateFactory.zoomTo(12f));
         this.map = map;
     }
 

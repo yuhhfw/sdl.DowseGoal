@@ -10,19 +10,22 @@
         android:id="@+id/map_fragment"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="0dp"
-        android:layout_height="709dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_height="0dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/black"
         app:layout_constraintEnd_toEndOf="@+id/black"
+        app:layout_constraintHorizontal_bias="0.566"
         app:layout_constraintStart_toStartOf="@+id/black"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/black"
+        app:layout_constraintVertical_bias="0.644" />
 
     <TextView
         android:id="@+id/black"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#333030"
+        android:background="#00333030"
         android:gravity="center_horizontal|center_vertical"
         android:text=""
         android:textSize="30dp"

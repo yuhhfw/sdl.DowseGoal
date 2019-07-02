@@ -75,6 +75,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         if (fragment != null) {
             Log.d(TAG, "onCreate: getMapAsync");
             fragment.getMapAsync(this);
+        }else{
+            Log.d(TAG, "Map == null");
         }
 
         apiClient = new GoogleApiClient.Builder(this)

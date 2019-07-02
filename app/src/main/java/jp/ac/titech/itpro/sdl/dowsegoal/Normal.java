@@ -202,7 +202,7 @@ public class Normal extends AppCompatActivity implements
 
                 //Goalに近づいたらボタンを表示、バイブレーション
                 if(now_LatLng != null) {
-                    if (calcDistanceToGoal(now_LatLng, CheckIn.Goal_LatLng) < (CheckIn.dist * CheckIn.dist / 9000)) { //もとは400
+                    if (calcDistanceToGoal(now_LatLng, CheckIn.Goal_LatLng) < (CheckIn.dist * CheckIn.dist / 400)) { //もとは400
                         if(start_count>0) {
                             Button hint;
                             hint = findViewById(R.id.hint_button);
@@ -336,8 +336,8 @@ public class Normal extends AppCompatActivity implements
         lat = MainActivity.START_LatLng.latitude +(CheckIn.dist*random_dist*Math.cos(Math.toRadians(random_theta)))/one_lat;
         lon = MainActivity.START_LatLng.longitude + (CheckIn.dist*random_dist*Math.sin(Math.toRadians(random_theta)))/one_lon;
         //簡易デモ用
-        lat = MainActivity.START_LatLng.latitude;
-        lon = MainActivity.START_LatLng.longitude;
+        //lat = MainActivity.START_LatLng.latitude;
+        //lon = MainActivity.START_LatLng.longitude;
         CheckIn.Goal_LatLng = new LatLng(lat,lon);
     }
 
