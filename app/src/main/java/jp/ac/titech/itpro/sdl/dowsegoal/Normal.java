@@ -75,7 +75,7 @@ public class Normal extends AppCompatActivity implements
     int random_theta = random.nextInt(360);
     double random_dist = (500.0 + random2.nextInt(500))/(double) 1000;
     private LatLng now_LatLng;
-
+    int start_count=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate");
@@ -93,7 +93,7 @@ public class Normal extends AppCompatActivity implements
         TextView check = findViewById(R.id.check);
         check.setVisibility(View.GONE);
         TextView info_comment = findViewById(R.id.info_comment);
-        info_comment.setText("Decided Goal!");
+        info_comment.setText("Decided Goal!\n↓show the direction you are sure to want");
         Button hint_button;
         hint_button = findViewById(R.id.hint_button);
         hint_button.setVisibility(View.GONE);
@@ -112,12 +112,13 @@ public class Normal extends AppCompatActivity implements
                 // TODO: ここで処理を実行する
                 //textの変更と方向指示器の削除
                 TextView info_com = findViewById(R.id.info_comment);
-                info_com.setText("Let's Find thw goal!!");
+                info_com.setText("Let's Find the goal!!");
                 RotationView rv = findViewById(R.id.rotation_view);
                 rv.setVisibility(View.GONE);
                 Button hint_button;
                 hint_button = findViewById(R.id.hint_button);
                 hint_button.setVisibility(View.VISIBLE);
+                start_count++;
                 CheckIn.start = System.currentTimeMillis();
             }
         }, 3000);
@@ -126,6 +127,7 @@ public class Normal extends AppCompatActivity implements
         hint_button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+                start_count=0;
                 RotationView rv = findViewById(R.id.rotation_view);
                 rv.setVisibility(View.VISIBLE);
                 Button hint_button;
@@ -140,6 +142,7 @@ public class Normal extends AppCompatActivity implements
                         Button hint_button;
                         hint_button = findViewById(R.id.hint_button);
                         hint_button.setVisibility(View.VISIBLE);
+                        start_count++;
                     }
                 }, 3000);
             }
@@ -178,8 +181,8 @@ public class Normal extends AppCompatActivity implements
         locationClient = LocationServices.getFusedLocationProviderClient(this);
 
         request = new LocationRequest();
-        request.setInterval(1000L);
-        request.setFastestInterval(500L);
+        request.setInterval(500L);
+        request.setFastestInterval(250L);
         request.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
 
         callback = new LocationCallback() {
@@ -199,14 +202,25 @@ public class Normal extends AppCompatActivity implements
 
                 //Goalに近づいたらボタンを表示、バイブレーション
                 if(now_LatLng != null) {
-                    if (calcDistanceToGoal(now_LatLng, CheckIn.Goal_LatLng) < (CheckIn.dist * CheckIn.dist / 400)) {
-                        Button hint;
-                        hint = findViewById(R.id.hint_button);
-                        hint.setVisibility(View.GONE);
-                        Button goal;
-                        goal = findViewById(R.id.goal_button);
-                        goal.setVisibility(View.VISIBLE);
-                        ((Vibrator) getSystemService(Context.VIBRATOR_SERVICE)).vibrate(1000);
+                    if (calcDistanceToGoal(now_LatLng, CheckIn.Goal_LatLng) < (CheckIn.dist * CheckIn.dist / 9000)) { //もとは400
+                        if(start_count>0) {
+                            Button hint;
+                            hint = findViewById(R.id.hint_button);
+                            hint.setVisibility(View.GONE);
+                            Button goal;
+                            goal = findViewById(R.id.goal_button);
+                            goal.setVisibility(View.VISIBLE);
+                            ((Vibrator) getSystemService(Context.VIBRATOR_SERVICE)).vibrate(1000);
+                        }
+                    }else{
+                        if(start_count > 0) {
+                            Button hint;
+                            hint = findViewById(R.id.hint_button);
+                            hint.setVisibility(View.VISIBLE);
+                            Button goal;
+                            goal = findViewById(R.id.goal_button);
+                            goal.setVisibility(View.GONE);
+                        }
                     }
                 }
                 if (map == null) {
@@ -321,6 +335,9 @@ public class Normal extends AppCompatActivity implements
         //Goalの座標を設定
         lat = MainActivity.START_LatLng.latitude +(CheckIn.dist*random_dist*Math.cos(Math.toRadians(random_theta)))/one_lat;
         lon = MainActivity.START_LatLng.longitude + (CheckIn.dist*random_dist*Math.sin(Math.toRadians(random_theta)))/one_lon;
+        //簡易デモ用
+        lat = MainActivity.START_LatLng.latitude;
+        lon = MainActivity.START_LatLng.longitude;
         CheckIn.Goal_LatLng = new LatLng(lat,lon);
     }
 

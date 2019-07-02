@@ -114,7 +114,7 @@ public class Easy extends AppCompatActivity implements
             @Override
             public void run() {
                 TextView info_com = findViewById(R.id.info_comment);
-                info_com.setText("Find thw goal!");
+                info_com.setText("Find the goal!");
                 Button hint_button;
                 hint_button = findViewById(R.id.hint_button);
                 hint_button.setVisibility(View.VISIBLE);
@@ -288,6 +288,7 @@ public class Easy extends AppCompatActivity implements
             }
         }
         locationClient.requestLocationUpdates(request, callback, null);
+        map.setMyLocationEnabled(true);
         state = State.STARTED;
     }
 

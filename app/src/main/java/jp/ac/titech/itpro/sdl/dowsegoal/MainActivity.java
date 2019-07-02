@@ -203,6 +203,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         }
         locationClient.requestLocationUpdates(request, callback, null);
+        map.setMyLocationEnabled(true);
         state = State.STARTED;
     }
 

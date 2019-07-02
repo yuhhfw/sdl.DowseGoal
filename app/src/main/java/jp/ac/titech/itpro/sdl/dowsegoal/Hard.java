@@ -132,8 +132,8 @@ public class Hard extends AppCompatActivity implements
         locationClient = LocationServices.getFusedLocationProviderClient(this);
 
         request = new LocationRequest();
-        request.setInterval(1000L);
-        request.setFastestInterval(500L);
+        request.setInterval(500L);
+        request.setFastestInterval(250L);
         request.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
 
         callback = new LocationCallback() {
@@ -148,13 +148,19 @@ public class Hard extends AppCompatActivity implements
                 now_LatLng = new LatLng(location.getLatitude(), location.getLongitude());
 
                 //Goalに近づいたらボタンを表示、バイブレーション
+                Log.d(TAG,"before vibe");
                 if(now_LatLng != null) {
-                    if(calcDistanceToGoal(now_LatLng, CheckIn.Goal_LatLng) < (CheckIn.dist*CheckIn.dist/100)) {
+                    Log.d(TAG, "now_LatLng is not null");
+                    Log.d(TAG,"now_lat:" + now_LatLng.latitude);
+                    Log.d(TAG,"now_lng:" + now_LatLng.longitude);
+                    Log.d(TAG, "Goal_lat:" + CheckIn.Goal_LatLng.latitude);
+                    Log.d(TAG, "Goal_lng:" + CheckIn.Goal_LatLng.longitude);
+                    if(calcDistanceToGoal(now_LatLng, CheckIn.Goal_LatLng) < (CheckIn.dist*CheckIn.dist/100)) { //もとは100
                         TextView info_com = findViewById(R.id.info_comment);
                         info_com.setVisibility(View.GONE);
                         TextView info_com2 = findViewById(R.id.info_comment2);
                         info_com2.setVisibility(View.VISIBLE);
-                        ((Vibrator) getSystemService(Context.VIBRATOR_SERVICE)).vibrate(1000);
+                        ((Vibrator) getSystemService(Context.VIBRATOR_SERVICE)).vibrate(200);
                     }else{
                         TextView info_com2 = findViewById(R.id.info_comment2);
                         info_com2.setVisibility(View.GONE);
@@ -162,11 +168,16 @@ public class Hard extends AppCompatActivity implements
                         info_com.setVisibility(View.VISIBLE);
                         ((Vibrator) getSystemService(Context.VIBRATOR_SERVICE)).cancel();
                     }
-                    if (calcDistanceToGoal(now_LatLng, CheckIn.Goal_LatLng) < (CheckIn.dist * CheckIn.dist / 400)) {
+                    if (calcDistanceToGoal(now_LatLng, CheckIn.Goal_LatLng) < (CheckIn.dist * CheckIn.dist / 400)) { //もとは400
+                        ((Vibrator) getSystemService(Context.VIBRATOR_SERVICE)).cancel();
                         Button goal;
                         goal = findViewById(R.id.goal_button);
                         goal.setVisibility(View.VISIBLE);
-                        ((Vibrator) getSystemService(Context.VIBRATOR_SERVICE)).vibrate(500);
+                        ((Vibrator) getSystemService(Context.VIBRATOR_SERVICE)).vibrate(1000);
+                    }else{
+                        Button goal;
+                        goal = findViewById(R.id.goal_button);
+                        goal.setVisibility(View.GONE);
                     }
                 }
                 if (map == null) {
@@ -279,6 +290,9 @@ public class Hard extends AppCompatActivity implements
         //Goalの座標を設定
         lat = MainActivity.START_LatLng.latitude +(CheckIn.dist*random_dist*Math.cos(Math.toRadians(random_theta)))/one_lat;
         lon = MainActivity.START_LatLng.longitude + (CheckIn.dist*random_dist*Math.sin(Math.toRadians(random_theta)))/one_lon;
+        //簡易デモ用
+        //lat = MainActivity.START_LatLng.latitude;
+        //lon = MainActivity.START_LatLng.longitude;
         CheckIn.Goal_LatLng = new LatLng(lat,lon);
     }
 

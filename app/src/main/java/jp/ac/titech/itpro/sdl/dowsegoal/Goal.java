@@ -39,7 +39,7 @@ public class Goal extends AppCompatActivity {
         TextView discription = findViewById(R.id.award);
         discription.setText("Goal!!!!!!!!");
 
-        float score_time = goal_time + CheckIn.count_click*10;
+        float score_time = goal_time + CheckIn.count_click*300*(float)CheckIn.dist;
         TextView score = findViewById(R.id.score);
         score.setText("Good!");
         if(score_time < CheckIn.dist*3000){
